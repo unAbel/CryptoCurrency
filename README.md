@@ -1,6 +1,6 @@
 # CryptoCurrency - Seguimiento de Criptomonedas en Tiempo Real
 
-CryptoIOS es una aplicación de iOS que te permite realizar un seguimiento del valor actual de las criptomonedas en tiempo real. Con esta aplicación, puedes estar al tanto de los precios de Bitcoin, Ethereum, Litecoin y otras criptomonedas populares en los mercados financieros.
+CryptoCurrency es una aplicación de iOS que te permite realizar un seguimiento del valor actual de las criptomonedas en tiempo real. Con esta aplicación, puedes estar al tanto de los precios de Bitcoin, Ethereum, Litecoin y otras criptomonedas populares en los mercados financieros.
 
 ## Características
 

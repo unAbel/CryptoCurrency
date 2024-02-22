@@ -6,27 +6,38 @@
 //
 
 import SwiftUI
+//import URLImage
 
 struct TopMoverItemView: View {
+    let coin: Coin
+    
     var body: some View {
-        let nameCoin: String = "BTC"
-        let namePrice: String = "$ 2.99"
         VStack(alignment: .leading, spacing: 5){
-            Image(systemName: "bitcoinsign.circle.fill")
-                .resizable()
-                .frame(width: 32, height: 32)
-                .foregroundColor(.orange)
+            AsyncImage(url: URL(string: coin.image)) { _image in
+                // Una vez que la imagen se ha cargado, la mostramos en un ImageView
+                _image
+                    .resizable()
+                    //.aspectRatio(contentMode: .fit)
+                    .aspectRatio(16/10, contentMode: .fit)
+                    .frame(width: 40, height: 40) // Tamaño de la imagen
+                    .padding(.bottom, 15)
+                
+            } placeholder: {
+                // Este bloque de código se ejecuta mientras la imagen se está cargando
+                ProgressView() // Muestra una vista de progreso
+            }
+                        //.padding()
             
-            HStack{
-                Text(nameCoin)
+            HStack(spacing: 10){
+                Text(coin.symbol.uppercased())
                     .font(.caption)
                     .fontWeight(.bold)
-                Text(namePrice)
+                Text("\(coin.currentPrice)")
                     .font(.caption)
-                    .fontWeight(.bold)
+                    .foregroundColor(.gray)
             }
 
-            Text("+ 5.60%")
+            Text("\(coin.priceChangePercentage24H)")
                 .font(.title2)
                 .foregroundColor(.green)
         }
@@ -38,6 +49,8 @@ struct TopMoverItemView: View {
     }
 }
 
+
 #Preview {
-    TopMoverItemView()
+    TopMoverItemView(coin: coin1)
 }
+
