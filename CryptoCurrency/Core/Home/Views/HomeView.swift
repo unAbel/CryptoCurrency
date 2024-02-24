@@ -9,22 +9,42 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var vm = HomeViewModel()
+    @State private var sortOrder: SortOrder = .date
     
     var body: some View {
         NavigationView{
-            ScrollView(.vertical, showsIndicators: false){
-                // top movers
+            VStack{
                 TopMoverView(viewmodel: vm)
+                ScrollView(.vertical, showsIndicators: false){
+                    // top movers
+                    //TopMoverView(viewmodel: vm)
+                    Text("Este es un título largo que se desplazará con el contenido")
+                      .navigationBarTitleDisplayMode(.inline)
+                    Divider()
+                    
+                    // all coins view
+                    AllCoinView(viewModel: vm)
+                }
+                .navigationBarItems(leading:
+                                        MyView()
+                  )
+                  
                 
-                Divider()
                 
+                /*
+                .navigationBarItems(
+                    leading:
+                        HStack {
+                            //Image(systemName: "person.fill")
+                            Text("Usuario")
+                        },
+                    trailing:
+                        Text("Opciones")
+                )
+                */
                 
-                // all coins view
-                AllCoinView(viewModel: vm)
             }
-            .navigationTitle("Lives Prices")
         }
-        
     }
 }
 

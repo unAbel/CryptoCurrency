@@ -62,5 +62,6 @@ class HomeViewModel: ObservableObject{
         })
         self.TopCoins = Array(topMovers.prefix(6))
     }
+    
 }
 

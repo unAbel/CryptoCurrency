@@ -13,6 +13,7 @@ struct TopMoverItemView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
+            
             AsyncImage(url: URL(string: coin.image)) { _image in
                 // Una vez que la imagen se ha cargado, la mostramos en un ImageView
                 _image
@@ -32,16 +33,17 @@ struct TopMoverItemView: View {
                 Text(coin.symbol.uppercased())
                     .font(.caption)
                     .fontWeight(.bold)
-                Text("\(coin.currentPrice)")
+                Text("\(coin.currentPrice.toCurrency())")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
 
-            Text("\(coin.priceChangePercentage24H)")
+            Text(coin.priceChangePercentage24H.toPercentString())
                 .font(.title2)
-                .foregroundColor(.green)
+                .foregroundColor(coin.priceChangePercentage24H > 0 ? .green : .red)
         }
         .frame(width: 140, height: 140)
+        .background(Color("itemBackgroundColor"))
         .overlay{
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(.systemGray6), lineWidth: 4)

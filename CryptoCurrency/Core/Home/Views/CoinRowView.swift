@@ -23,7 +23,7 @@ struct CoinRowView: View {
                     .aspectRatio(contentMode: .fit)
                     //.aspectRatio(16/3, contentMode: .fit)
                     .frame(width: 40, height: 40) // Tamaño de la imagen
-                    .padding(.bottom, 15)
+                    //.padding(.bottom, 15)
                 
             } placeholder: {
                 // Este bloque de código se ejecuta mientras la imagen se está cargando
@@ -46,21 +46,22 @@ struct CoinRowView: View {
             Spacer()
             
             // coin info price
-            VStack(alignment: .leading, spacing: 5){
-                Text("\(coin.currentPrice)")
+            VStack(alignment: .trailing, spacing: 5){
+                Text("\(coin.currentPrice.toCurrency())")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .padding(.leading, 5)
                 
-                Text("\(coin.priceChangePercentage24H)")
+                Text(coin.priceChangePercentage24H.toPercentString())
                     .font(.caption)
                     .padding(.leading, 5)
-                    .foregroundColor(.green)
+                    .foregroundColor(coin.priceChangePercentage24H > 0 ? .green : .red)
             }
             .padding(.leading, 2 )
         }
         .padding(.horizontal)
-        .padding(.vertical, 10)
+        .padding(.vertical, 6)
+        .background(Color("itemBackgroundColor"))
     }
 }
 
